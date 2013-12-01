@@ -24,3 +24,5 @@ doc/
 .DS_Store
 .idea
 .secret
+.directory
+/config/app_environment_variables.rb
