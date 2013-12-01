@@ -1,0 +1,44 @@
+<div class="row">
+  <h1 class="center">Add a New Worker to Roster</h1>
+  <%= form_for(@worker) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <div class="span6">
+      <%= f.label      "First Name" %>
+      <%= f.text_field :fname %>
+
+      <%= f.label      "Middle Name" %>
+      <%= f.text_field :mname %>
+
+      <%= f.label      "Last Name" %>
+      <%= f.text_field :lname %>
+
+      <%= f.label      "Address" %>
+      <%= f.text_field :address %>
+
+      <%= f.label      "City" %>
+      <%= f.text_field :city %>
+
+      <%= f.label      "State" %>
+      <%= f.text_field :state %>
+
+      <%= f.label      "Zip Code" %>
+      <%= f.text_field :zipcode %>
+    </div>
+    <div class="span6">
+      <%= f.label        "Number of Withholdings" %>
+      <%= f.number_field :withhold, :step => 1 %>
+
+      <%= f.label        "Marital Status" %>
+      <%= f.radio_button(:married, true) %>
+      <%= f.label(:married_yes, "married") %>
+      <%= f.radio_button(:married, false) %>
+      <%= f.label(:married_no, "single") %>
+ 
+      <%= f.label        "hourly rate" %>
+      <%= f.number_field :hourrate %>
+
+      <%= f.submit "Add Worker to Roster", class: "btn btn-large btn-primary" %>
+
+    </div>
+  <% end %>
+</div>
