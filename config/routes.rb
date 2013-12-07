@@ -1,6 +1,7 @@
 Payroll::Application.routes.draw do
-  resources :workers
+  resources :workers, :only => [:new, :create, :show, :update]
   root 'static#home'
+  match '/createcheck', to: 'workers#createCheck', via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

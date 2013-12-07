@@ -1,0 +1,31 @@
+<div class="row">
+  <h1 class="center">
+    <%= @worker.fname + " " + @worker.mname + " " + @worker.lname %>
+  </h1>
+  <h5><%= @worker.address %></h5>
+  <h5><%= @worker.city %></h5>
+  <h5><%= @worker.state %></h5>
+  <h5><%= @worker.zipcode %></h5>
+  
+  <p class="pull-left">withholdings:</p>
+  <h5><%= @worker.withhold %></h5>
+  <div class="clear"></div>
+  
+  <p class="pull-left">married?</p>
+  <h5><%= @worker.married %></h5>
+  <div class="clear"></div>
+  
+  <p class="pull-left">hourly rate:</p>
+  <h5><%= @worker.hourrate %></h5>
+  <div class="clear"></div>
+  <h2 class="center">Edit Info</h2>
+  <%= button_tag "make change", onclick: "editWorker()", class: "btn btn-large btn-primary" %>
+  <%= select_tag(:field, options_for_select([['First Name', 'fname'], ['Middle Name', 'mname'], ['Last Name', 'lname'],
+	['Address', 'address'], ['City', 'city'], ['State', 'state'], ['Zip Code', 'zipcode'], ['Withholdings', 'withhold'],
+	['Marital Status', 'married'], ['Hourly Rate', 'hourrate']] )) %>
+  <%= text_field_tag :value %>
+  <div class="clear"></div>
+  <h2 class="center">Create Check</h2>
+  <%= button_tag "Create Check", onclick: "createCheck(#{ @worker.id })", class: "btn btn-large btn-primary" %>
+  <%= text_field_tag :hours %>
+</div>

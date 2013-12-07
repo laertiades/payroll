@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130224727) do
+ActiveRecord::Schema.define(version: 20131204231540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checks", force: true do |t|
+    t.decimal  "hours"
+    t.decimal  "rate",       precision: 8, scale: 2
+    t.decimal  "gross",      precision: 8, scale: 2
+    t.decimal  "fedtax",     precision: 8, scale: 2
+    t.decimal  "soctax",     precision: 8, scale: 2
+    t.decimal  "medtax",     precision: 8, scale: 2
+    t.decimal  "emsoctax",   precision: 8, scale: 2
+    t.decimal  "emmedtax",   precision: 8, scale: 2
+    t.decimal  "net",        precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "worker_id"
+  end
 
   create_table "workers", force: true do |t|
     t.string   "fname"

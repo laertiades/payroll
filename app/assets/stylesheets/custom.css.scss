@@ -23,6 +23,9 @@ body {
 /* Home Page */
 
 /* typography */
+h5 {
+  margin-left: 100px;
+}
 
 /* header */
 
@@ -43,7 +46,17 @@ header h3 {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input#hours {
+  margin: 5%;
+  width: 10%;
+}
+
+input#value {
+  margin: 5%;
+  width: 50%;
+}
+
+input, textarea, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
