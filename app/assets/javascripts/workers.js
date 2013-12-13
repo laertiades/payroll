@@ -14,6 +14,8 @@ function editWorker(){
   });
 }
 function createCheck(id){
+  var re = /^[1-9]\d*(\.\d+)?$/;
+  if (re.test($('#hours').val())) {
   $.ajax({
     url: '/createcheck',
     type: "POST",
@@ -27,4 +29,6 @@ function createCheck(id){
       $('body div.container').prepend('<div class="alert alert-error">' + msg3 + '</div>');
     }
   });
+  }
+  else { alert("bad hours value"); }
 }

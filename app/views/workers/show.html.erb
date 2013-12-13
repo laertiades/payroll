@@ -2,30 +2,63 @@
   <h1 class="center">
     <%= @worker.fname + " " + @worker.mname + " " + @worker.lname %>
   </h1>
-  <h5><%= @worker.address %></h5>
-  <h5><%= @worker.city %></h5>
-  <h5><%= @worker.state %></h5>
-  <h5><%= @worker.zipcode %></h5>
-  
-  <p class="pull-left">withholdings:</p>
-  <h5><%= @worker.withhold %></h5>
-  <div class="clear"></div>
-  
-  <p class="pull-left">married?</p>
-  <h5><%= @worker.married %></h5>
-  <div class="clear"></div>
-  
-  <p class="pull-left">hourly rate:</p>
-  <h5><%= @worker.hourrate %></h5>
-  <div class="clear"></div>
+  <div class="span6">
+    <h5><%= @worker.address %></h5>
+    <h5><%= "#{@worker.city}, #{@worker.state}  #{@worker.zipcode}" %></h5>
+    <p class="pull-left">withholdings:</p>
+    <h5><%= @worker.withhold %></h5>
+    <div class="clear"></div>
+    
+    <p class="pull-left">married?</p>
+    <h5><%= @worker.married %></h5>
+    <div class="clear"></div>
+    
+    <p class="pull-left">hourly rate:</p>
+    <h5><%= @worker.hourrate %></h5>
+    <div class="clear"></div>
+  </div>
+
+  <div class="span6">
   <h2 class="center">Edit Info</h2>
-  <%= button_tag "make change", onclick: "editWorker()", class: "btn btn-large btn-primary" %>
-  <%= select_tag(:field, options_for_select([['First Name', 'fname'], ['Middle Name', 'mname'], ['Last Name', 'lname'],
-	['Address', 'address'], ['City', 'city'], ['State', 'state'], ['Zip Code', 'zipcode'], ['Withholdings', 'withhold'],
-	['Marital Status', 'married'], ['Hourly Rate', 'hourrate']] )) %>
-  <%= text_field_tag :value %>
+  <div class="label-input">
+    <%= label_tag(:field, "Select Field to Edit") %>
+    <%= select_tag(:field, options_for_select([['First Name', 'fname'], ['Middle Name', 'mname'], ['Last Name', 'lname'], ['Address', 'address'], ['City', 'city'], ['State', 'state'], ['Zip Code', 'zipcode'], ['Withholdings', 'withhold'], ['Marital Status', 'married'], ['Hourly Rate', 'hourrate']] )) %>
+  </div>
+  <div class="label-input">
+    <%= label_tag(:value, "New Value") %>  
+    <%= text_field_tag :value %>
+  </div>
+  <%= button_tag "make change", onclick: "editWorker()", class: "btn btn-large btn-primary pull-right" %>
   <div class="clear"></div>
-  <h2 class="center">Create Check</h2>
-  <%= button_tag "Create Check", onclick: "createCheck(#{ @worker.id })", class: "btn btn-large btn-primary" %>
-  <%= text_field_tag :hours %>
+  </div>
+  <h2 class="center">Checks</h2>
+  <table class="table">
+    <tr>
+      <th>date</th>
+      <th>hours</th>
+      <th>gross</th>
+      <th>income tax</th>
+      <th>social security</th>
+      <th>medicare</th>
+      <th>net</th>
+    </tr>
+  <% @worker.checks.each do |check| %>
+    <tr>
+    <td><%= check.created_at.strftime("%d %b.  %Y") %></td>
+    <td><%= check.hours %></td>
+    <td><%= number_with_precision(check.gross,  :precision => 2) %></td>
+    <td><%= number_with_precision(check.fedtax, :precision => 2) %></td>
+    <td><%= number_with_precision(check.soctax, :precision => 2) %></td>
+    <td><%= number_with_precision(check.medtax, :precision => 2) %></td>
+    <td><%= number_with_precision(check.net,    :precision => 2) %></td>
+    </tr>
+  <% end %>
+  </table>
+  <div class="span6 offset6">
+    <div class="label-input">
+      <%= label_tag :hours %>
+      <%= text_field_tag :hours %>
+    </div>
+    <%= button_tag "Create Check", onclick: "createCheck(#{ @worker.id })", class: "btn btn-large btn-primary pull-right" %>
+  </div>
 </div>

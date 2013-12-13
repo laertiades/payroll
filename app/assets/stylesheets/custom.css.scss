@@ -46,14 +46,16 @@ header h3 {
 
 /* forms */
 
-input#hours {
-  margin: 5%;
-  width: 10%;
-}
-
-input#value {
-  margin: 5%;
-  width: 50%;
+.label-input {
+  label {
+    float: left;
+    width: 40%;
+    text-align: right;
+    margin-right: 5%;
+  }
+  input {
+    width: 50%;
+  }
 }
 
 input, textarea, .uneditable-input {
