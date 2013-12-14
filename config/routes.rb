@@ -1,4 +1,5 @@
 Payroll::Application.routes.draw do
+  resources :checks, :only => [:show]
   resources :workers, :only => [:new, :create, :show, :update]
   root 'static#home'
   match '/createcheck', to: 'workers#createCheck', via: 'post'

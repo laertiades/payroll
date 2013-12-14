@@ -46,11 +46,12 @@
     <tr>
     <td><%= check.created_at.strftime("%d %b.  %Y") %></td>
     <td><%= check.hours %></td>
-    <td><%= number_with_precision(check.gross,  :precision => 2) %></td>
-    <td><%= number_with_precision(check.fedtax, :precision => 2) %></td>
-    <td><%= number_with_precision(check.soctax, :precision => 2) %></td>
-    <td><%= number_with_precision(check.medtax, :precision => 2) %></td>
-    <td><%= number_with_precision(check.net,    :precision => 2) %></td>
+    <td><%= number_to_currency(check.gross) %></td>
+    <td><%= number_to_currency(check.fedtax) %></td>
+    <td><%= number_to_currency(check.soctax) %></td>
+    <td><%= number_to_currency(check.medtax) %></td>
+    <td><%= number_to_currency(check.net) %></td>
+    <td><%= link_to "print", check_path(check, :format => 'pdf') %></td>
     </tr>
   <% end %>
   </table>
